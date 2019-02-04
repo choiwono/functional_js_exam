@@ -34,3 +34,36 @@ console.log(log_length(
     map(filter(users, function(user){ return user.age < 30 }),
     function(user) { return user.name; })
 ))
+
+function addMaker(a) {
+    return function(b) {
+        return a+b;
+    }
+}
+
+function bvalue(key) {
+    return function(obj) { // obj 자료형을 받아서 키값이 a인값을 리턴해준다.
+        return obj[key];
+    }
+}
+
+console.log(bvalue('a')({a:'hi',b:'hello'})); // 출력값 hi
+
+console.log(log_length(
+    map(filter(users, u => u.age < 30), u => u.age)));
+
+var under_30 = u => u.age < 30;
+var over_30 = u => u.age >= 30;
+
+console.log(log_length(
+    map(filter(users, under_30), u => u.age)
+));
+
+var ages = list => map(list, v => v.age);
+var names = list => map(list, v => v.name);
+
+console.log(log_length(ages(filter(users,under_30))));
+console.log(log_length(names(filter(users,under_30))));
+
+var bvalues = key => list => map(list, v => v[key]);
+var ages = bvalues('age');
