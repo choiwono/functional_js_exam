@@ -67,3 +67,39 @@ console.log(log_length(names(filter(users,under_30))));
 
 var bvalues = key => list => map(list, v => v[key]);
 var ages = bvalues('age');
+
+var users = [
+    { id: 1, name: "ID1", age: 32 },
+    { id: 2, name: "ID2", age: 25 },
+    { id: 3, name: "ID3", age: 32 },
+    { id: 4, name: "ID4", age: 28 },
+    { id: 5, name: "ID5", age: 27 },
+];
+
+console.log(
+    filter(users, function(user) { return user.id == 3 })[0]
+)
+
+var user;
+for (var i=0, len = users.length; i < len; i++) {
+    if(users[i].id == 3) {
+        user = users[i];
+        break;
+    }
+}
+console.log(user);
+
+function findById(list, id) {
+    for (var i = 0, len = list.length; i < len; i++) {
+        if(list[i].id == id) return list[i];
+    }
+}
+console.log(findById(users, 3));
+
+function findBy(list, key, val) {
+    for (var i=0, len=list.length; i<len; i++) {
+        if(list[i][key] === val) return list[i];
+    }
+}
+
+console.log(findBy(users,'id',5));
